@@ -10,14 +10,14 @@ import com.home.realtor.models.enums.HotWater;
 import com.home.realtor.models.enums.Lodger;
 import com.home.realtor.models.enums.State;
 import com.home.realtor.models.enums.TypeBuilding;
-import com.home.realtor.models.enums.TypeFlat;
+import com.home.realtor.models.enums.TypeRooms;
 import com.home.realtor.models.enums.TypeFurniture;
 import com.home.realtor.models.enums.Utilities;
 
 import lombok.Data;
 
 @Data
-public class Apartment {
+public class Flat {
     @Id
     private String id;
     private String phone;
@@ -26,7 +26,7 @@ public class Apartment {
     private Address address;
     private Heating heating;
     private HotWater hotWater;
-    private TypeFlat typeFlat;
+    private TypeRooms typeRooms;
     private Utilities utilities;
     private TypeFurniture typeFurniture;
     private TypeBuilding typeBuilding;
@@ -34,4 +34,6 @@ public class Apartment {
     private List<Lodger> lodgerList;
     private LocalDate createdDate;
     private LocalDate updatedDate;
+    private int price;
+    private boolean active;
 }

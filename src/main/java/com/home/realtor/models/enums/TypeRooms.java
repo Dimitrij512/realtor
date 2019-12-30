@@ -1,5 +1,5 @@
 package com.home.realtor.models.enums;
 
-public enum TypeFlat {
+public enum TypeRooms {
     DIVIDED, WALKABLE
 }

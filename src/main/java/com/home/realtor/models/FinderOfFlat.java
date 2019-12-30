@@ -14,6 +14,7 @@ public class FinderOfFlat {
     private String phone;
     private String note;
     private List<State> state;
+    private List<Region> regionList;
     private List<Heating> heating;
     private List<HotWater> hotWater;
     private List<TypeRooms> typeRooms;

@@ -13,9 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.home.realtor.models.Flat;
 
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 
 @Repository
 public class FlatRepositoryImpl implements FlatRepository {
@@ -61,7 +59,9 @@ public class FlatRepositoryImpl implements FlatRepository {
                         .and("hotWater").in(criteria.getHotWaterList())
                         .and("typeRooms").in(criteria.getTypeRoomsList())
                         .and("typeBuilding").in(criteria.getTypeBuildingList())
-                        .and("typeFurniture").in(criteria.getTypeFurnitureList()))
+                        .and("typeFurniture").in(criteria.getTypeFurnitureList())),
+                unwind("address"),
+                match(Criteria.where("region").in(criteria.getRegionList()))
         );
 
         return operations.aggregate(agg, "flat", Flat.class).getMappedResults();

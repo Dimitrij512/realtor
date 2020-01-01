@@ -1,5 +1,6 @@
 package com.home.realtor.models.criteries;
 
+import com.home.realtor.models.Region;
 import com.home.realtor.models.enums.*;
 import lombok.Data;
 
@@ -14,4 +15,5 @@ public class FlatCriteria {
     List<TypeRooms> typeRoomsList;
     List<TypeBuilding> typeBuildingList;
     List<TypeFurniture> typeFurnitureList;
+    List<Region> regionList;
 }

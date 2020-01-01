@@ -1,14 +1,21 @@
 package com.home.realtor.repositories;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.home.realtor.models.criteries.FlatCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.home.realtor.models.Flat;
+
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
 
 @Repository
 public class FlatRepositoryImpl implements FlatRepository {
@@ -41,6 +48,23 @@ public class FlatRepositoryImpl implements FlatRepository {
     @Override
     public List<Flat> findAll() {
         return operations.findAll(Flat.class);
+    }
+
+    @Override
+    public List<Flat> findByCriteria(FlatCriteria criteria) {
+
+        Aggregation agg = newAggregation(
+                match(Criteria.where("active").is(true)
+                        .and("price").lte(criteria.getPrice())
+                        .and("state").in(criteria.getStateList())
+                        .and("heating").in(criteria.getHeatingList())
+                        .and("hotWater").in(criteria.getHotWaterList())
+                        .and("typeRooms").in(criteria.getTypeRoomsList())
+                        .and("typeBuilding").in(criteria.getTypeBuildingList())
+                        .and("typeFurniture").in(criteria.getTypeFurnitureList()))
+        );
+
+        return operations.aggregate(agg, "flat", Flat.class).getMappedResults();
     }
 
     @Override

@@ -18,7 +18,7 @@ public class FlatCriteria {
     List<TypeRooms> typeRoomsList;
     List<TypeBuilding> typeBuildingList;
     List<TypeFurniture> typeFurnitureList;
-    List<Region> regionList;
+    List<String> regionNameList;
 
     public List<State> getStateList() {
         return Objects.isNull(this.stateList)
@@ -44,16 +44,22 @@ public class FlatCriteria {
             : this.typeRoomsList;
     }
 
+    public List<TypeBuilding> getTypeBuildingList() {
+        return Objects.isNull(this.typeBuildingList)
+            ? new ArrayList<>()
+            : this.typeBuildingList;
+    }
+
     public List<TypeFurniture> getTypeFurnitureList() {
         return Objects.isNull(this.typeFurnitureList)
             ? new ArrayList<>()
             : this.typeFurnitureList;
     }
 
-    public List<Region> getRegionList() {
-        return Objects.isNull(this.regionList)
+    public List<String> getRegionList() {
+        return Objects.isNull(this.regionNameList)
             ? new ArrayList<>()
-            : this.regionList;
+            : this.regionNameList;
     }
 
 }

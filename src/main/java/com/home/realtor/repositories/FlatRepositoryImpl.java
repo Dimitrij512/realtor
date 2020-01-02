@@ -1,9 +1,7 @@
 package com.home.realtor.repositories;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.home.realtor.models.criteries.FlatCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
@@ -12,8 +10,11 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.home.realtor.models.Flat;
+import com.home.realtor.models.criteries.FlatCriteria;
 
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.unwind;
 
 @Repository
 public class FlatRepositoryImpl implements FlatRepository {
@@ -52,7 +53,7 @@ public class FlatRepositoryImpl implements FlatRepository {
     public List<Flat> findByCriteria(FlatCriteria criteria) {
 
         Aggregation agg = newAggregation(
-                match(Criteria.where("active").is(true)
+                match(Criteria.where("active").is(criteria.isActive())
                         .and("price").lte(criteria.getPrice())
                         .and("state").in(criteria.getStateList())
                         .and("heating").in(criteria.getHeatingList())
@@ -60,8 +61,8 @@ public class FlatRepositoryImpl implements FlatRepository {
                         .and("typeRooms").in(criteria.getTypeRoomsList())
                         .and("typeBuilding").in(criteria.getTypeBuildingList())
                         .and("typeFurniture").in(criteria.getTypeFurnitureList())),
-                unwind("address"),
-                match(Criteria.where("region").in(criteria.getRegionList()))
+            unwind("address.region"),
+            match(Criteria.where("address.region.name").in(criteria.getRegionList()))
         );
 
         return operations.aggregate(agg, "flat", Flat.class).getMappedResults();

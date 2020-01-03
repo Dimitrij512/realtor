@@ -45,7 +45,9 @@ public class FlatRepositoryImpl implements FlatRepository {
     }
 
     @Override
-    public List<Flat> findAll() {
+    public List<Flat> findAllByCompanyId(final String id) {
+        final Query query = new Query();
+        query.addCriteria(Criteria.where("companyId").is(id));
         return operations.findAll(Flat.class);
     }
 
@@ -54,6 +56,7 @@ public class FlatRepositoryImpl implements FlatRepository {
 
         Aggregation agg = newAggregation(
                 match(Criteria.where("active").is(criteria.isActive())
+                        .and("companyId").is(criteria.getCompanyId())
                         .and("price").lte(criteria.getPrice())
                         .and("state").in(criteria.getStateList())
                         .and("heating").in(criteria.getHeatingList())

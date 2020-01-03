@@ -1,16 +1,22 @@
 package com.home.realtor.models.criteries;
 
-import com.home.realtor.models.Region;
-import com.home.realtor.models.enums.*;
-import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.home.realtor.models.enums.Heating;
+import com.home.realtor.models.enums.HotWater;
+import com.home.realtor.models.enums.State;
+import com.home.realtor.models.enums.TypeBuilding;
+import com.home.realtor.models.enums.TypeFurniture;
+import com.home.realtor.models.enums.TypeRooms;
+
+import lombok.Data;
+
 @Data
 public class FlatCriteria {
     int price;
+    String companyId;
     boolean active;
     List<State> stateList;
     List<Heating> heatingList;

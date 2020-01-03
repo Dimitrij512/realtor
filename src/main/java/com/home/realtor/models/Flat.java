@@ -10,8 +10,8 @@ import com.home.realtor.models.enums.HotWater;
 import com.home.realtor.models.enums.Lodger;
 import com.home.realtor.models.enums.State;
 import com.home.realtor.models.enums.TypeBuilding;
-import com.home.realtor.models.enums.TypeRooms;
 import com.home.realtor.models.enums.TypeFurniture;
+import com.home.realtor.models.enums.TypeRooms;
 import com.home.realtor.models.enums.Utilities;
 
 import lombok.Data;
@@ -20,6 +20,7 @@ import lombok.Data;
 public class Flat {
     @Id
     private String id;
+    private String companyId;
     private String phone;
     private String note;
     private State state;

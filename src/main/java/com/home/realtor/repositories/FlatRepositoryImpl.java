@@ -56,15 +56,15 @@ public class FlatRepositoryImpl implements FlatRepository {
     public List<Flat> findByCriteria(FlatCriteria criteria) {
 
         Aggregation agg = newAggregation(
-                match(Criteria.where("active").is(criteria.isActive())
-                        .and("companyId").is(criteria.getCompanyId())
-                        .and("price").lte(criteria.getPrice())
-                        .and("state").in(criteria.getStateList())
-                        .and("heating").in(criteria.getHeatingList())
-                        .and("hotWater").in(criteria.getHotWaterList())
-                        .and("typeRooms").in(criteria.getTypeRoomsList())
-                        .and("typeBuilding").in(criteria.getTypeBuildingList())
-                        .and("typeFurniture").in(criteria.getTypeFurnitureList())),
+            match(Criteria.where("active").is(criteria.isActive())
+                .and("companyId").is(criteria.getCompanyId())
+                .and("price").lte(criteria.getPrice())
+                .and("state").in(criteria.getStateList())
+                .and("heating").in(criteria.getHeatingList())
+                .and("hotWater").in(criteria.getHotWaterList())
+                .and("typeRooms").in(criteria.getTypeRoomsList())
+                .and("typeBuilding").in(criteria.getTypeBuildingList())
+                .and("typeFurniture").in(criteria.getTypeFurnitureList())),
             unwind("address.region"),
             match(Criteria.where("address.region.name").in(criteria.getRegionList()))
         );

@@ -1,11 +1,11 @@
-package com.home.realtor.repositories;
+package com.home.realtor.services;
 
 import java.util.List;
 
 import com.home.realtor.models.Flat;
 import com.home.realtor.models.criteries.FlatCriteria;
 
-public interface FlatRepository {
+public interface FlatService {
     Flat create(Flat flat);
 
     Flat update(Flat flat);

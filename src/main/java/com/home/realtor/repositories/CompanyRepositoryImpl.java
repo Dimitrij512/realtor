@@ -22,8 +22,8 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     }
 
     @Override
-    public Company update(Company flat) {
-        return operations.save(flat);
+    public Company update(Company company) {
+        return operations.save(company);
     }
 
     @Override

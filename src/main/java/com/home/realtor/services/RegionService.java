@@ -1,10 +1,10 @@
-package com.home.realtor.repositories;
+package com.home.realtor.services;
 
 import java.util.List;
 
 import com.home.realtor.models.Region;
 
-public interface RegionRepository {
+public interface RegionService {
     Region create(Region region);
 
     Region update(Region region);

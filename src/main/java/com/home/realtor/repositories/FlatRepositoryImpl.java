@@ -48,7 +48,8 @@ public class FlatRepositoryImpl implements FlatRepository {
     public List<Flat> findAllByCompanyId(final String id) {
         final Query query = new Query();
         query.addCriteria(Criteria.where("companyId").is(id));
-        return operations.findAll(Flat.class);
+
+        return operations.find(query, Flat.class);
     }
 
     @Override

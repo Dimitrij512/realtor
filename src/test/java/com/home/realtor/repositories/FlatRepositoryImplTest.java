@@ -32,10 +32,10 @@ class FlatRepositoryImplTest {
     private MongoOperations operations;
 
     @Autowired
-    private FlatRepositoryImpl flatRepository;
+    private FlatRepository flatRepository;
 
     @Autowired
-    private UserRepositoryImpl userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private CompanyRepository companyRepository;
@@ -161,10 +161,7 @@ class FlatRepositoryImplTest {
     }
 
     private Company prepareCompany() {
-        Company company = new Company();
-        company.setName("TestCompany");
-
-        return company;
+        return Company.builder().name("TestCompany").build();
     }
 
 }

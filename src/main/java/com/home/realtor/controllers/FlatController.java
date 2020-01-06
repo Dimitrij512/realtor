@@ -38,7 +38,7 @@ public class FlatController {
         return flatService.getById(id);
     }
 
-    @GetMapping("/company/{id}")
+    @GetMapping("/company/id/{id}")
     List<Flat> findAllByCompanyId(@PathVariable String id){
         return flatService.findAllByCompanyId(id);
     }

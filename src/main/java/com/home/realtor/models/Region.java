@@ -8,5 +8,6 @@ import lombok.Data;
 public class Region {
     @Id
     String id;
+    String companyId;
     String name;
 }

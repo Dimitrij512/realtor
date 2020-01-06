@@ -1,8 +1,8 @@
-package com.home.realtor.repositories;
+package com.home.realtor.services;
 
 import com.home.realtor.models.Company;
 
-public interface CompanyRepository {
+public interface CompanyService {
     Company create(Company company);
 
     Company update(Company company);

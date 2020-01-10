@@ -40,7 +40,7 @@ public class UserRepositoryImpl implements UserRepository {
         final Query query = new Query();
         query.addCriteria(Criteria
             .where("companyId").is(companyId)
-            .and("userId").is(userId));
+            .and("id").is(userId));
 
         return operations.findOne(query, User.class);
     }
